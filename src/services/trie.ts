@@ -4,20 +4,35 @@ class Trie {
   public root: trieNode = {}
 
   public insert = (word: string): void => {
-    this.insertNewWord(word)
+    this.insertTrie(word)
   }
 
-  private insertNewWord = (word: string, trieNode: trieNode = this.root, n: number = 0): void => {
+  public search = (word: string): trieNode | null => {
+    return this.searchTrie(word)
+  }
+
+  private insertTrie = (word: string, trieNode: trieNode = this.root, n: number = 0): void => {
     if (n < word.length) {
       if (!trieNode[word[n]]) trieNode[word[n]] = {}
-
-      const newNode: trieNode = trieNode[word[n]]
+      const nextNode: trieNode = trieNode[word[n]]
 
       n++
-      this.insertNewWord(word, newNode, n);
+      this.insertTrie(word, nextNode, n);
     } else {
       trieNode["*"] = {}
     }
+  }
+
+  private searchTrie = (word: string, trieNode: trieNode = this.root, n: number = 0): trieNode | null => {
+    let result: trieNode | null = trieNode[word[n]] || null
+
+    if (n + 1 < word.length && trieNode[word[n]]) {
+      const nextNode: trieNode = trieNode[word[n]]
+
+      n++
+      result = this.searchTrie(word, nextNode, n)
+    }
+    return result
   }
 }
 
