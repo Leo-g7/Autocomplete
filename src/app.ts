@@ -2,10 +2,10 @@ import Trie from "./services/trie";
 
 const trie = new Trie()
 
-trie.insert("hell")
-trie.insert("hello")
-trie.insert("hello world!")
-trie.insert("cat")
+trie.insert("ab")
+trie.insert("abc")
+trie.insert("acb")
+trie.insert("abcd")
+trie.insert("e")
 
-console.log(trie.search("hell"))
-console.log(trie.search("helloo"))
+console.log(trie.autoComplete('a'))

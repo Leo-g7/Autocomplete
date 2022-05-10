@@ -1,23 +1,38 @@
 import { trieNode } from "../types"
 
 class Trie {
-  public root: trieNode = {}
+  private root: trieNode = {}
 
   public insert = (word: string): void => {
     this.insertTrie(word)
   }
 
-  public search = (word: string): trieNode | null => {
+  private search = (word: string): trieNode | null => {
     return this.searchTrie(word)
+  }
+
+  private collectAllWords = (node: trieNode, word: string, words: string[] = []): string[] => {
+    if (node['*']) words.push(word)
+
+    for (const [key, value] of Object.entries(node)) {
+      this.collectAllWords(value, word + key, words)
+    }
+
+    return words
+  }
+
+  public autoComplete = (word: string): string[] | null => {
+    const currentNode = this.search(word)
+    if (!currentNode) return null
+
+    return this.collectAllWords(currentNode, word)
   }
 
   private insertTrie = (word: string, trieNode: trieNode = this.root, n: number = 0): void => {
     if (n < word.length) {
       if (!trieNode[word[n]]) trieNode[word[n]] = {}
-      const nextNode: trieNode = trieNode[word[n]]
 
-      n++
-      this.insertTrie(word, nextNode, n);
+      this.insertTrie(word, trieNode[word[n]], ++n);
     } else {
       trieNode["*"] = {}
     }
@@ -27,10 +42,7 @@ class Trie {
     let result: trieNode | null = trieNode[word[n]] || null
 
     if (n + 1 < word.length && trieNode[word[n]]) {
-      const nextNode: trieNode = trieNode[word[n]]
-
-      n++
-      result = this.searchTrie(word, nextNode, n)
+      result = this.searchTrie(word, trieNode[word[n]], ++n)
     }
     return result
   }
