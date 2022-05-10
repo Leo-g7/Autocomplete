@@ -2,11 +2,12 @@
   "name": "autocomplete",
   "version": "0.0.0",
   "scripts": {
-    "start": "node src/app.ts",
+    "start": "nodemon src/app.ts",
     "test": "jest"
   },
   "dependencies": {
-    "jest": "^28.1.0"
+    "jest": "^28.1.0",
+    "nodemon": "^2.0.16"
   },
   "devDependencies": {
     "@types/jest": "^27.5.0",

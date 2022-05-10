@@ -1,1 +1,3 @@
-console.log("hello world")
+import Trie from "./services/trie";
+
+const trie = new Trie()
