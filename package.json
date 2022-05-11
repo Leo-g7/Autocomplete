@@ -6,6 +6,9 @@
     "test": "jest"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.17.10",
+    "@babel/preset-typescript": "^7.16.7",
+    "babel": "^6.23.0",
     "@types/inquirer": "^8.2.1",
     "inquirer": "^8.2.4",
     "jest": "^28.1.0",

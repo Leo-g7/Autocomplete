@@ -36,7 +36,6 @@ const quickSelect = (items: weightedWord[], size: number, comparator: (a: number
 
   const index = select(items, size, compare);
 
-  if (index != size) console.log("warning: could not complete quickSelect");
   return items.slice(0, size);
 }
 

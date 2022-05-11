@@ -8,15 +8,15 @@ import Trie from './trie'
   Clear the prompt
 */
 
-const trie = new Trie()
-const prompt = promptSync();
+const trie: Trie = new Trie()
+const prompt: promptSync.Prompt = promptSync();
 console.clear();
 
 /*
   Run a CLI with 3 options in a loop
 */
 
-const runCli = () => {
+const runCli = (): void => {
   inquirer
     .prompt([
       {
@@ -37,7 +37,7 @@ const runCli = () => {
   Do something depending on the option selectioned in the CLI
 */
 
-const cliRoot = (answer: string) => {
+const cliRoot = (answer: string): void => {
   if (answer === 'Insert new word') insert();
   else if (answer === 'Autocomplete') autoComplete();
   else process.exit()
@@ -49,7 +49,7 @@ const cliRoot = (answer: string) => {
   If the values are correct insert it into the Instantiate Trie
 */
 
-const insert = () => {
+const insert = (): void => {
   console.log('\n')
   const word: string = prompt('Enter a word:').toLowerCase();
 
@@ -69,7 +69,7 @@ const insert = () => {
   If the values is correct print all the words starting with this word
 */
 
-const autoComplete = () => {
+const autoComplete = (): void => {
   console.log('\n')
 
   const word: string = prompt('Enter the string to complete:').toLowerCase();
