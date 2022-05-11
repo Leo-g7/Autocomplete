@@ -2,9 +2,19 @@ import inquirer from 'inquirer'
 import promptSync from 'prompt-sync';
 import Trie from './trie'
 
+/*
+  Instantiate a Trie object
+  Create a prompt
+  Clear the prompt
+*/
+
 const trie = new Trie()
 const prompt = promptSync();
 console.clear();
+
+/*
+  Run a CLI with 3 options in a loop
+*/
 
 const runCli = () => {
   inquirer
@@ -23,11 +33,21 @@ const runCli = () => {
     })
 }
 
+/*
+  Do something depending on the option selectioned in the CLI
+*/
+
 const cliRoot = (answer: string) => {
   if (answer === 'Insert new word') insert();
   else if (answer === 'Autocomplete') autoComplete();
   else process.exit()
 }
+
+
+/*
+  Let the user enter a word and a weight
+  If the values are correct insert it into the Instantiate Trie
+*/
 
 const insert = () => {
   console.log('\n')
@@ -43,6 +63,11 @@ const insert = () => {
   else if (!word) console.log('Incorrect word\n')
   else if (isNaN(Number(weight))) console.log('Incorrect weight\n')
 }
+
+/*
+  Let the user enter a word
+  If the values is correct print all the words starting with this word
+*/
 
 const autoComplete = () => {
   console.log('\n')
